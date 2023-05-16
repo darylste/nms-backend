@@ -1,13 +1,16 @@
+const fs = require('fs');
 const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'hello from server', status: 200 });
-});
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/events.js`));
 
-app.post('/', (req, res) => {
-  res.send('Posted');
+app.get('/api/v1/events', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: { tours },
+  });
 });
 
 const port = 3000;
