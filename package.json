@@ -1,0 +1,14 @@
+{
+  "name": "nms-backend",
+  "version": "1.0.0",
+  "description": "REST API for National Museums Scotland website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daryl Stensland",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
