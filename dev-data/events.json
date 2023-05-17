@@ -12,26 +12,22 @@
       {
         "icon": "/icon.svg",
         "title": "Journey Through Time",
-        "description":
-          "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
+        "description": "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
       },
       {
         "icon": "/icon.svg",
         "title": "Uncover Hidden Treasures",
-        "description":
-          "Get the opportunity to see some of Scotland's most fascinating archaeological finds up close. Marvel at the intricate designs and mysterious symbols on the carved stones of the Picts, and discover the exquisite metalwork and jewellery of the Vikings. You will also see Roman artefacts that shed light on the interaction between the Romans and the indigenous peoples of Scotland, as well as other treasures that offer a glimpse into Scotland's rich past."
+        "description": "Get the opportunity to see some of Scotland's most fascinating archaeological finds up close. Marvel at the intricate designs and mysterious symbols on the carved stones of the Picts, and discover the exquisite metalwork and jewellery of the Vikings. You will also see Roman artefacts that shed light on the interaction between the Romans and the indigenous peoples of Scotland, as well as other treasures that offer a glimpse into Scotland's rich past."
       },
       {
         "icon": "/icon.svg",
         "title": "Dig into archaeology",
-        "description":
-          "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
+        "description": "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
       },
       {
         "icon": "/icon.svg",
         "title": "Explore the Wider World",
-        "description":
-          "Gain a deeper understanding of Scotland's place in the wider world, and how its history has been shaped by interactions with other cultures and civilisations. Learn about the trade and exchange that took place between the ancient Scots and other cultures, as well as the conflicts and alliances that shaped Scotland's history. You will also see how Scotland's own unique culture and traditions have influenced and been influenced by other cultures, creating a rich and diverse tapestry of history and heritage."
+        "description": "Gain a deeper understanding of Scotland's place in the wider world, and how its history has been shaped by interactions with other cultures and civilisations. Learn about the trade and exchange that took place between the ancient Scots and other cultures, as well as the conflicts and alliances that shaped Scotland's history. You will also see how Scotland's own unique culture and traditions have influenced and been influenced by other cultures, creating a rich and diverse tapestry of history and heritage."
       }
     ],
     "standardAdultPrice": 12.99,
@@ -50,6 +46,7 @@
     ]
   },
   {
+    "id": 2,
     "name": "Ancient Discoveries: Unearthing Scotland's Hidden Treasures",
     "hostMuseum": "Kelvingrove Art Museum",
     "heroImg": "./event.png",
@@ -62,26 +59,22 @@
       {
         "icon": "/icon.svg",
         "title": "Journey Through Time",
-        "description":
-          "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
+        "description": "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
       },
       {
         "icon": "/icon.svg",
         "title": "Uncover Hidden Treasures",
-        "description":
-          "Get the opportunity to see some of Scotland's most fascinating archaeological finds up close. Marvel at the intricate designs and mysterious symbols on the carved stones of the Picts, and discover the exquisite metalwork and jewellery of the Vikings. You will also see Roman artefacts that shed light on the interaction between the Romans and the indigenous peoples of Scotland, as well as other treasures that offer a glimpse into Scotland's rich past."
+        "description": "Get the opportunity to see some of Scotland's most fascinating archaeological finds up close. Marvel at the intricate designs and mysterious symbols on the carved stones of the Picts, and discover the exquisite metalwork and jewellery of the Vikings. You will also see Roman artefacts that shed light on the interaction between the Romans and the indigenous peoples of Scotland, as well as other treasures that offer a glimpse into Scotland's rich past."
       },
       {
         "icon": "/icon.svg",
         "title": "Dig into archaeology",
-        "description":
-          "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
+        "description": "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
       },
       {
         "icon": "/icon.svg",
         "title": "Explore the Wider World",
-        "description":
-          "Gain a deeper understanding of Scotland's place in the wider world, and how its history has been shaped by interactions with other cultures and civilisations. Learn about the trade and exchange that took place between the ancient Scots and other cultures, as well as the conflicts and alliances that shaped Scotland's history. You will also see how Scotland's own unique culture and traditions have influenced and been influenced by other cultures, creating a rich and diverse tapestry of history and heritage."
+        "description": "Gain a deeper understanding of Scotland's place in the wider world, and how its history has been shaped by interactions with other cultures and civilisations. Learn about the trade and exchange that took place between the ancient Scots and other cultures, as well as the conflicts and alliances that shaped Scotland's history. You will also see how Scotland's own unique culture and traditions have influenced and been influenced by other cultures, creating a rich and diverse tapestry of history and heritage."
       }
     ],
     "standardAdultPrice": 12.99,
@@ -100,6 +93,7 @@
     ]
   },
   {
+    "id": 3,
     "name": "Ancient Discoveries: Unearthing Scotland's Hidden Treasures",
     "hostMuseum": "Kelvingrove Art Museum",
     "heroImg": "./event.png",
@@ -112,26 +106,22 @@
       {
         "icon": "/icon.svg",
         "title": "Journey Through Time",
-        "description":
-          "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
+        "description": "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
       },
       {
         "icon": "/icon.svg",
         "title": "Uncover Hidden Treasures",
-        "description":
-          "Get the opportunity to see some of Scotland's most fascinating archaeological finds up close. Marvel at the intricate designs and mysterious symbols on the carved stones of the Picts, and discover the exquisite metalwork and jewellery of the Vikings. You will also see Roman artefacts that shed light on the interaction between the Romans and the indigenous peoples of Scotland, as well as other treasures that offer a glimpse into Scotland's rich past."
+        "description": "Get the opportunity to see some of Scotland's most fascinating archaeological finds up close. Marvel at the intricate designs and mysterious symbols on the carved stones of the Picts, and discover the exquisite metalwork and jewellery of the Vikings. You will also see Roman artefacts that shed light on the interaction between the Romans and the indigenous peoples of Scotland, as well as other treasures that offer a glimpse into Scotland's rich past."
       },
       {
         "icon": "/icon.svg",
         "title": "Dig into archaeology",
-        "description":
-          "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
+        "description": "Travel back in time and explore the rich history of Scotland. From the enigmatic carved stones of the Picts to the intricate illuminated manuscripts of the medieval Scots, you will discover a diverse range of cultures and traditions that have shaped Scotland over the centuries. You will learn about the everyday lives, beliefs, and customs of these ancient peoples, gaining a deeper understanding of Scotland's past and how it has evolved over time."
       },
       {
         "icon": "/icon.svg",
         "title": "Explore the Wider World",
-        "description":
-          "Gain a deeper understanding of Scotland's place in the wider world, and how its history has been shaped by interactions with other cultures and civilisations. Learn about the trade and exchange that took place between the ancient Scots and other cultures, as well as the conflicts and alliances that shaped Scotland's history. You will also see how Scotland's own unique culture and traditions have influenced and been influenced by other cultures, creating a rich and diverse tapestry of history and heritage."
+        "description": "Gain a deeper understanding of Scotland's place in the wider world, and how its history has been shaped by interactions with other cultures and civilisations. Learn about the trade and exchange that took place between the ancient Scots and other cultures, as well as the conflicts and alliances that shaped Scotland's history. You will also see how Scotland's own unique culture and traditions have influenced and been influenced by other cultures, creating a rich and diverse tapestry of history and heritage."
       }
     ],
     "standardAdultPrice": 12.99,

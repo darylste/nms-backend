@@ -1,31 +1,24 @@
-const fs = require('fs');
 const express = require('express');
+const morgan = require('morgan');
+
+const eventRouter = require('./routes/eventRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.use(express.json());
 
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/events.json`));
-
-app.get('/api/v1/events', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    results: tours.length,
-    data: { tours },
-  });
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
 });
 
-app.post('/api/v1/events', (req, res) => {
-  console.log(req.body);
-  res.status(201).json({
-    status: 'success',
-    data: {
-      event: req.body,
-    },
-  });
-});
+app.use('/api/v1/events', eventRouter);
+app.use('/api/v1/bookings', bookingRouter);
+app.use('/api/v1/users', userRouter);
 
-const port = 3000;
-app.listen(port, () => {
-  console.log('App running on port: 3000');
-});
+module.exports = app;

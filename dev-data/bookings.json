@@ -1,0 +1,23 @@
+[
+  {
+    "_id": "1356426",
+    "user": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "emailAddress": "j.doe@gmail.com"
+    },
+    "event": {
+      "name": "Museum Name",
+      "hostMuseum": "Kelvingrove Art Museum",
+      "dateTime": "2023-07-14",
+      "standardAdultPrice": 12.99,
+      "standardChildPrice": 8,
+      "premiumAdultPrice": 30,
+      "premiumChildPrice": 15
+    },
+    "numStandardAdultTickets": 2,
+    "numStandardChildTickets": 2,
+    "numPremiumAdultTickets": 0,
+    "numPremiumChildTickets": 0
+  }
+]
