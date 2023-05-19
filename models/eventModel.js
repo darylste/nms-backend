@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const eventSchema = new mongoose.Schema({
   name: {
@@ -6,6 +7,11 @@ const eventSchema = new mongoose.Schema({
     required: [true, 'An event must have a name.'],
     unique: [true, 'There is already an event with that name.'],
     trim: true,
+    minlength: 5,
+  },
+  slug: {
+    type: String,
+    unique: [true, 'A slug must be unique.'],
   },
   hostMuseum: {
     type: String,
@@ -50,6 +56,15 @@ const eventSchema = new mongoose.Schema({
   },
 });
 
+eventSchema.pre('save', function (next) {
+  this.slug = slugify(this.name, { lower: true });
+
+  next();
+});
+
+eventSchema.pre('find', function (next) {
+  next();
+});
 const Event = mongoose.model('Event', eventSchema);
 
 module.exports = Event;

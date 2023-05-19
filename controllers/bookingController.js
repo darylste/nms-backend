@@ -1,7 +1,6 @@
 const Booking = require('../models/bookingModel');
 
 exports.createBooking = async (req, res) => {
-  // ###### Needs tested ###### //
   try {
     const newBooking = await Booking.create(req.body);
 
@@ -19,19 +18,18 @@ exports.createBooking = async (req, res) => {
   }
 };
 
-exports.getAllBookings = async (req, res) => {
-  // ###### Needs tested ###### //
+exports.getMyBookings = async (req, res) => {
+  // !! NOT WORKING - Cannot access user.id property !!
+  const bookings = await Booking.find({ id: req.body.id });
+
+  if (!bookings.length) {
+    return res.status(200).json({
+      status: 'fail',
+      message: 'No bookings for that user.',
+    });
+  }
 
   try {
-    const bookings = await Booking.find();
-
-    if (!bookings.length) {
-      res.status(404).json({
-        status: 'fail',
-        message: 'No bookings found.',
-      });
-    }
-
     res.status(200).json({
       status: 'success',
       data: {
@@ -47,12 +45,11 @@ exports.getAllBookings = async (req, res) => {
 };
 
 exports.getSingleBooking = async (req, res) => {
-  // ###### Needs tested ###### //
   try {
     const booking = await Booking.findById(req.params.id);
 
-    if (!booking.length) {
-      res.status(404).json({
+    if (!booking) {
+      return res.status(404).json({
         status: 'fail',
         message: 'No booking found.',
       });
@@ -73,7 +70,6 @@ exports.getSingleBooking = async (req, res) => {
 };
 
 exports.updateBooking = async (req, res) => {
-  // ###### Needs tested ###### //
   try {
     const updatedBooking = await Booking.findByIdAndUpdate(
       req.params.id,
@@ -95,31 +91,12 @@ exports.updateBooking = async (req, res) => {
 };
 
 exports.deleteBooking = async (req, res) => {
-  // ###### Needs tested ###### //
   try {
     await Booking.findByIdAndDelete(req.params.id);
 
     res.status(200).json({
       status: 'success',
       data: null,
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
-
-exports.getMyBookings = async (req, res) => {
-  // why doesn't dot or bracket notation work??
-  // const bookings = await Booking.find({ user.firstName: req.body.name });
-  try {
-    res.status(200).json({
-      status: 'success',
-      data: {
-        bookings,
-      },
     });
   } catch (err) {
     res.status(400).json({

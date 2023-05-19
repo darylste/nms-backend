@@ -1,118 +1,84 @@
 const Event = require('../models/eventModel');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
-exports.createEvent = async (req, res) => {
-  try {
-    const newEvent = await Event.create(req.body);
+exports.createEvent = catchAsync(async (req, res, next) => {
+  const newEvent = await Event.create(req.body);
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        event: newEvent,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
+  res.status(201).json({
+    status: 'success',
+    data: {
+      event: newEvent,
+    },
+  });
+});
 
-exports.getAllEvents = async (req, res) => {
-  try {
-    const events = await Event.find();
+exports.getAllEvents = catchAsync(async (req, res, next) => {
+  const events = await Event.find();
 
-    if (!events.length) {
-      res.status(404).json({
-        status: 'fail',
-        message: 'No events found.',
-      });
-    }
-    res.status(200).json({
-      status: 'success',
-      results: events.length,
-      data: { events },
-    });
-  } catch (err) {
+  res.status(200).json({
+    status: 'success',
+    results: events.length,
+    data: { events },
+  });
+});
+
+exports.getEventsAtMuseum = catchAsync(async (req, res, next) => {
+  const museum = req.params.museum.split('-').join(' ');
+  const events = await Event.find({ hostMuseum: museum });
+  if (!events.length) {
     res.status(404).json({
       status: 'fail',
-      message: err.message,
+      message: 'No events found.',
     });
   }
-};
+  res.status(200).json({
+    status: 'success',
+    results: events.length,
+    data: {
+      events,
+    },
+  });
+});
 
-exports.getEventsAtMuseum = async (req, res) => {
-  try {
-    const museum = req.params.museum.split('-').join(' ');
-    const events = await Event.find({ hostMuseum: museum });
-    if (!events.length) {
-      res.status(404).json({
-        status: 'fail',
-        message: 'No events found.',
-      });
-    }
-    res.status(200).json({
-      status: 'success',
-      results: events.length,
-      data: {
-        events,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err.message,
-    });
+exports.getSingleEvent = catchAsync(async (req, res, next) => {
+  const event = await Event.findById(req.params.id);
+
+  if (!event) {
+    return next(new AppError('No tour found with that ID.', 404));
   }
-};
 
-exports.getSingleEvent = async (req, res) => {
-  try {
-    const event = await Event.findById(req.params.id);
+  res.status(200).json({
+    status: 'success',
+    data: { event },
+  });
+});
 
-    res.status(200).json({
-      status: 'success',
-      data: { event },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err.message,
-    });
+exports.updateEvent = catchAsync(async (req, res, next) => {
+  const event = await Event.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!event) {
+    return next(new AppError('No tour found with that ID.', 404));
   }
-};
 
-exports.updateEvent = async (req, res) => {
-  try {
-    const event = await Event.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+  res.status(200).json({
+    status: 'success',
+    data: { event },
+  });
+});
 
-    res.status(200).json({
-      status: 'success',
-      data: { event },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err.message,
-    });
+exports.deleteEvent = catchAsync(async (req, res, next) => {
+  const event = await Event.findByIdAndDelete(req.params.id);
+
+  if (!event) {
+    return next(new AppError('No tour found with that ID.', 404));
   }
-};
 
-exports.deleteEvent = async (req, res) => {
-  try {
-    await Event.findByIdAndDelete(req.params.id);
-
-    res.status(204).json({
-      status: 'success',
-      data: null,
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
