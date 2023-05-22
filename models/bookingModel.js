@@ -8,12 +8,14 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
     user: {
-      type: Object,
-      required: true,
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'A booking must contain the user who booked.'],
     },
     event: {
-      type: Object,
-      required: true,
+      type: mongoose.Schema.ObjectId,
+      ref: 'Event',
+      required: [true, 'A booking must contain event which is booked.'],
     },
     numStandardAdultTickets: {
       type: Number,
@@ -47,6 +49,19 @@ bookingSchema.virtual('totalPrice').get(function () {
       this.event.premiumChildPrice * this.numPremiumChildTickets
     ).toFixed(2) * 1
   );
+});
+
+bookingSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'user',
+    select: 'firstName lastName emailAddress',
+  }).populate({
+    path: 'event',
+    select:
+      'name hostMuseum dateTime description standardAdultPrice standardChildPrice premiumAdultPrice premiumChildPrice',
+  });
+
+  next();
 });
 
 const Booking = mongoose.model('Booking', bookingSchema);

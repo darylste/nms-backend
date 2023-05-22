@@ -3,7 +3,19 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 exports.createEvent = catchAsync(async (req, res, next) => {
-  const newEvent = await Event.create(req.body);
+  const newEvent = await Event.create({
+    name: req.body.name,
+    hostMuseum: req.body.hostMuseum,
+    heroImg: req.body.heroImg,
+    dateTime: req.body.dateTime,
+    description: req.body.description,
+    features: req.body.features,
+    standardAdultPrice: req.body.standardAdultPrice,
+    standardChildPrice: req.body.standardChildPrice,
+    premiumAdultPrice: req.body.premiumAdultPrice,
+    premiumChildPrice: req.body.premiumChildPrice,
+    reviews: req.body.reviews,
+  });
 
   res.status(201).json({
     status: 'success',

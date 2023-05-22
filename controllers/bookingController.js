@@ -1,26 +1,28 @@
 const Booking = require('../models/bookingModel');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
-exports.createBooking = async (req, res) => {
-  try {
-    const newBooking = await Booking.create(req.body);
+exports.createBooking = catchAsync(async (req, res, next) => {
+  const booking = await Booking.create({
+    user: req.user.id,
+    event: req.body.event,
+    numStandardAdultTickets: req.body.numStandardAdultTickets,
+    numStandardChildTickets: req.body.numStandardChildTickets,
+    numPremiumAdultTickets: req.body.numPremiumAdultTickets,
+    numPremiumChildTickets: req.body.numPremiumChildTickets,
+  });
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        booking: newBooking,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
+  res.status(201).json({
+    status: 'success',
+    data: {
+      booking,
+    },
+  });
+});
 
-exports.getMyBookings = async (req, res) => {
-  // !! NOT WORKING - Cannot access user.id property !!
-  const bookings = await Booking.find({ id: req.body.id });
+exports.getMyBookings = catchAsync(async (req, res, next) => {
+  const bookings = await Booking.find({ user: req.user.id });
+  console.log(req.user.id);
 
   if (!bookings.length) {
     return res.status(200).json({
@@ -29,79 +31,54 @@ exports.getMyBookings = async (req, res) => {
     });
   }
 
-  try {
-    res.status(200).json({
-      status: 'success',
-      data: {
-        bookings,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
+  res.status(200).json({
+    status: 'success',
+    results: bookings.length,
+    data: {
+      bookings,
+    },
+  });
+});
+
+exports.getSingleBooking = catchAsync(async (req, res, next) => {
+  const booking = await Booking.findById(req.params.id);
+
+  if (!booking) {
+    return next(new AppError('No booking found with this ID.', 404));
   }
-};
 
-exports.getSingleBooking = async (req, res) => {
-  try {
-    const booking = await Booking.findById(req.params.id);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      booking,
+    },
+  });
+});
 
-    if (!booking) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'No booking found.',
-      });
-    }
+exports.updateBooking = catchAsync(async (req, res, next) => {
+  const booking = await Booking.findByIdAndUpdate(req.params.id, req.body);
 
-    res.status(200).json({
-      status: 'success',
-      data: {
-        booking,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
+  if (!booking) {
+    return next(new AppError('No booking found with this ID.', 404));
   }
-};
 
-exports.updateBooking = async (req, res) => {
-  try {
-    const updatedBooking = await Booking.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-    );
+  res.status(200).json({
+    status: 'success',
+    data: {
+      booking,
+    },
+  });
+});
 
-    res.status(200).json({
-      status: 'success',
-      data: {
-        booking: updatedBooking,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
+exports.deleteBooking = catchAsync(async (req, res, next) => {
+  const booking = await Booking.findByIdAndDelete(req.params.id);
+
+  if (!booking) {
+    return next(new AppError('No booking found with this ID.', 404));
   }
-};
 
-exports.deleteBooking = async (req, res) => {
-  try {
-    await Booking.findByIdAndDelete(req.params.id);
-
-    res.status(200).json({
-      status: 'success',
-      data: null,
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
+  res.status(200).json({
+    status: 'success',
+    data: null,
+  });
+});

@@ -14,9 +14,11 @@ const eventSchema = new mongoose.Schema({
     unique: [true, 'A slug must be unique.'],
   },
   hostMuseum: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
+    ref: 'Museum',
     required: [true, 'An event must have a host museum.'],
   },
+
   heroImg: {
     type: String,
     required: [true, 'An event must have a hero image.'],
@@ -58,6 +60,15 @@ const eventSchema = new mongoose.Schema({
 
 eventSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
+
+  next();
+});
+
+eventSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'hostMuseum',
+    select: 'name location',
+  });
 
   next();
 });

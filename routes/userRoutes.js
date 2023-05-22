@@ -7,12 +7,25 @@ const {
   updateUser,
   deleteUser,
 } = require('../controllers/userController');
-const { signup } = require('../controllers/authController');
+const {
+  signup,
+  login,
+  protect,
+  restrictTo,
+} = require('../controllers/authController');
 
 const router = express.Router();
 
 router.post('/signup', signup);
-router.route('/').get(getAllUsers).post(createUser);
-router.route('/:id').get(getSingleUser).patch(updateUser).delete(deleteUser);
+router.post('/login', login);
+router
+  .route('/')
+  .get(protect, restrictTo('admin'), getAllUsers)
+  .post(protect, restrictTo('admin'), createUser);
+router
+  .route('/:id')
+  .get(protect, restrictTo('admin'), getSingleUser)
+  .patch(protect, restrictTo('admin'), updateUser)
+  .delete(protect, restrictTo('admin'), deleteUser);
 
 module.exports = router;
