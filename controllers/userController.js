@@ -1,5 +1,7 @@
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
+const Booking = require('../models/bookingModel');
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.find();
@@ -12,33 +14,56 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getSingleUser = (req, res) => {
+exports.getSingleUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.body._id);
+
+  if (!user) {
+    return next(new AppError('No user found with that ID.', 404));
+  }
+
   res.status(200).json({
     status: 'success',
     data: {
-      user: '<SingleUser />',
+      user,
     },
   });
-};
+});
 
-exports.createUser = (req, res) => {
-  res.status(201).json({
-    status: 'success',
-    data: {
-      user: '<User />',
+exports.updateUser = catchAsync(async (req, res, next) => {
+  console.log(req.params.id);
+
+  const user = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      emailAddress: req.body.emailAddress,
+      role: req.body.role,
     },
-  });
-};
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
 
-exports.updateUser = (req, res) => {
+  if (!user) {
+    return next(new AppError('No user found with that ID.', 404));
+  }
+
   res.status(200).json({
     status: 'success',
     data: {
-      user: '<UpdatedUser />',
+      user: user,
     },
   });
-};
+});
 
-exports.deleteUser = (req, res) => {
+exports.deleteUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  if (!user) {
+    return next(new AppError('No user found with that ID.', 404));
+  }
+
   res.status(204).json({ status: 'success', data: null });
-};
+});

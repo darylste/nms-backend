@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const Booking = require('./bookingModel');
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -21,7 +22,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     emum: ['user', 'admin'],
-    default: 'user ',
+    default: 'user',
   },
   password: {
     type: String,
@@ -57,7 +58,6 @@ userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword,
 ) {
-  console.log(bcrypt.hash(candidatePassword, 13) === userPassword);
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 

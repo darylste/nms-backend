@@ -1,7 +1,7 @@
 const express = require('express');
 const {
   createBooking,
-  getMyBookings,
+  getAllBookings,
   getSingleBooking,
   updateBooking,
   deleteBooking,
@@ -10,7 +10,7 @@ const { protect, restrictTo } = require('../controllers/authController');
 
 const router = express.Router();
 
-router.route('/').get(protect, getMyBookings).post(protect, createBooking);
+router.route('/').get(protect, getAllBookings).post(protect, createBooking);
 router
   .route('/:id')
   .get(protect, restrictTo('admin'), getSingleBooking)

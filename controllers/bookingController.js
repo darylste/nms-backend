@@ -20,14 +20,13 @@ exports.createBooking = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getMyBookings = catchAsync(async (req, res, next) => {
-  const bookings = await Booking.find({ user: req.user.id });
-  console.log(req.user.id);
+exports.getAllBookings = catchAsync(async (req, res, next) => {
+  const bookings = await Booking.find();
 
   if (!bookings.length) {
     return res.status(200).json({
       status: 'fail',
-      message: 'No bookings for that user.',
+      message: 'No bookings found.',
     });
   }
 

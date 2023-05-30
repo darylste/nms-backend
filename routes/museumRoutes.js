@@ -15,7 +15,7 @@ router
   .get(getAllMuseums)
   .post(protect, restrictTo('admin'), createMuseum);
 router
-  .route('/:id')
+  .route('/:slug')
   .get(getSingleMuseum)
   .patch(protect, restrictTo('admin'), updateMuseum)
   .delete(protect, restrictTo('admin'), deleteMuseum);

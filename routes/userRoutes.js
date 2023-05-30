@@ -18,10 +18,8 @@ const router = express.Router();
 
 router.post('/signup', signup);
 router.post('/login', login);
-router
-  .route('/')
-  .get(protect, restrictTo('admin'), getAllUsers)
-  .post(protect, restrictTo('admin'), createUser);
+router.route('/').get(protect, restrictTo('admin'), getAllUsers);
+
 router
   .route('/:id')
   .get(protect, restrictTo('admin'), getSingleUser)

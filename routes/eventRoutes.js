@@ -16,7 +16,7 @@ router
   .get(getAllEvents)
   .post(protect, restrictTo('admin'), createEvent);
 router
-  .route('/:id')
+  .route('/:slug')
   .get(getSingleEvent)
   .patch(protect, restrictTo('admin'), updateEvent)
   .delete(protect, restrictTo('admin'), deleteEvent);

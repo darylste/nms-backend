@@ -7,6 +7,8 @@ exports.createCollection = catchAsync(async (req, res, next) => {
     name: req.body.name,
     hostMuseum: req.body.hostMuseum,
     description: req.body.description,
+    imgUrl: req.body.imgUrl,
+    imgAlt: req.body.imgAlt,
   });
 
   res.status(201).json({
@@ -30,7 +32,7 @@ exports.getAllCollections = catchAsync(async (req, res, next) => {
 });
 
 exports.getSingleCollection = catchAsync(async (req, res, next) => {
-  const collection = await Collection.findById(req.params.id);
+  const collection = await Collection.findOne({ slug: req.params.slug });
 
   if (!collection) {
     return next(new AppError('No collection found with that ID.', 404));
@@ -45,8 +47,8 @@ exports.getSingleCollection = catchAsync(async (req, res, next) => {
 });
 
 exports.updateCollection = catchAsync(async (req, res, next) => {
-  const collection = await Collection.findByIdAndUpdate(
-    req.params.id,
+  const collection = await Collection.findOneAndUpdate(
+    { slug: req.params.slug },
     req.body,
     {
       new: true,
@@ -67,7 +69,9 @@ exports.updateCollection = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteCollection = catchAsync(async (req, res, next) => {
-  const collection = await Collection.findByIdAndDelete(req.params.id);
+  const collection = await Collection.findOneAndDelete({
+    slug: req.params.slug,
+  });
 
   if (!collection) {
     return next(new AppError('No collection found with that ID', 404));

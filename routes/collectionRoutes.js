@@ -15,7 +15,7 @@ router
   .get(getAllCollections)
   .post(protect, restrictTo('admin'), createCollection);
 router
-  .route('/:id')
+  .route('/:slug')
   .get(getSingleCollection)
   .patch(protect, restrictTo('admin'), updateCollection)
   .delete(protect, restrictTo('admin'), deleteCollection);

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -43,6 +44,9 @@ app.use(xss());
 
 // protect against paramiter pollution
 app.use(hpp());
+
+// Allow front end to access CORS
+app.use(cors({ origin: 'http://localhost:3001' }));
 
 app.use('/api/v1/events', eventRouter);
 app.use('/api/v1/bookings', bookingRouter);

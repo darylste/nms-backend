@@ -40,17 +40,6 @@ const bookingSchema = new mongoose.Schema(
   },
 );
 
-bookingSchema.virtual('totalPrice').get(function () {
-  return (
-    (
-      this.event.standardAdultPrice * this.numStandardAdultTickets +
-      this.event.standardChildPrice * this.numStandardChildTickets +
-      this.event.premiumAdultPrice * this.numPremiumAdultTickets +
-      this.event.premiumChildPrice * this.numPremiumChildTickets
-    ).toFixed(2) * 1
-  );
-});
-
 bookingSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'user',
@@ -58,7 +47,18 @@ bookingSchema.pre(/^find/, function (next) {
   }).populate({
     path: 'event',
     select:
-      'name hostMuseum dateTime description standardAdultPrice standardChildPrice premiumAdultPrice premiumChildPrice',
+      'name slug dateTime description standardAdultPrice standardChildPrice premiumAdultPrice premiumChildPrice',
+  });
+
+  bookingSchema.virtual('totalPrice').get(function () {
+    return (
+      (
+        this.event.standardAdultPrice * this.numStandardAdultTickets +
+        this.event.standardChildPrice * this.numStandardChildTickets +
+        this.event.premiumAdultPrice * this.numPremiumAdultTickets +
+        this.event.premiumChildPrice * this.numPremiumChildTickets
+      ).toFixed(2) * 1
+    );
   });
 
   next();
