@@ -36,14 +36,7 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   console.log(req.body);
-  // if (
-  //   !req.body.firstName ||
-  //   !req.body.lastName ||
-  //   !req.body.emailAddress ||
-  //   !req.body.password
-  // ) {
-  //   return next(new AppError('Please complete all fields.', 400));
-  // }
+
   const user = await User.create(req.body);
 
   createSendToken(user, 201, res);
