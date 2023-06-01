@@ -15,7 +15,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 });
 
 exports.getSingleUser = catchAsync(async (req, res, next) => {
-  const user = await User.findByIdAndUpdate(req.body._id);
+  const user = await User.findById(req.params.id);
 
   if (!user) {
     return next(new AppError('No user found with that ID.', 404));
@@ -30,21 +30,10 @@ exports.getSingleUser = catchAsync(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsync(async (req, res, next) => {
-  console.log(req.params.id);
-
-  const user = await User.findByIdAndUpdate(
-    req.params.id,
-    {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      emailAddress: req.body.emailAddress,
-      role: req.body.role,
-    },
-    {
-      new: true,
-      runValidators: true,
-    },
-  );
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   if (!user) {
     return next(new AppError('No user found with that ID.', 404));

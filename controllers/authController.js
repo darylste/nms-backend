@@ -45,6 +45,10 @@ exports.signup = catchAsync(async (req, res, next) => {
     role: req.body.role,
   });
 
+  if (!firstName || !lastName || !emailAddress || !password) {
+    return next(new AppError('Please complete all fields.', 400));
+  }
+
   createSendToken(user, 201, res);
 });
 

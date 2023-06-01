@@ -38,8 +38,8 @@ exports.getAllMuseums = catchAsync(async (req, res, next) => {
 exports.getSingleMuseum = catchAsync(async (req, res, next) => {
   const museum = await Museum.find({ slug: req.params.slug });
 
-  if (!museum) {
-    return next(new AppError('No tour found with that ID.', 404));
+  if (!museum.length) {
+    return next(new AppError('No museum found.', 404));
   }
 
   res.status(200).json({

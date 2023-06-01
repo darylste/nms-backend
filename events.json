@@ -1,0 +1,43 @@
+{
+  "name": "",
+  "hostMuseum": "",
+  "imgUrl": "",
+  "imgAlt": "",
+  "dateTime": "",
+  "description": ["", ""],
+  "features": [
+    {
+      "icon": "",
+      "title": "",
+      "description": ""
+    },
+    {
+      "icon": "",
+      "title": "",
+      "description": ""
+    },
+    {
+      "icon": "",
+      "title": "",
+      "description": ""
+    },
+    {
+      "icon": "",
+      "title": "",
+      "description": ""
+    }
+  ],
+  "standardAdultPrice": 0,
+  "standardChildPrice": 0,
+  "premiumAdultPrice": 0,
+  "premiumChildPrice": 0,
+  "standardBenefits": ["", ""],
+  "premiumBenefits": ["", "", ""],
+  "reviews": [
+    {
+      "review": [""],
+      "img": "",
+      "author": ""
+    }
+  ]
+}

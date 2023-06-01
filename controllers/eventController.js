@@ -93,7 +93,7 @@ exports.getEventsAtMuseum = catchAsync(async (req, res, next) => {
         event => event?.hostMuseum?.slug === slug,
       );
 
-      if (error || !filteredEvents) {
+      if (error || !filteredEvents.length) {
         return res.status(404).json({
           status: 'fail',
           message: 'No events found.',
@@ -101,7 +101,7 @@ exports.getEventsAtMuseum = catchAsync(async (req, res, next) => {
       }
       return res.status(200).json({
         status: 'success',
-        results: events.length,
+        results: filteredEvents.length,
         data: {
           events: filteredEvents,
         },
