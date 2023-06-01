@@ -82,6 +82,7 @@ exports.deleteMuseum = catchAsync(async (req, res, next) => {
   if (!museum) {
     return next(new AppError('No museum found with that ID.', 404));
   }
+
   const events = await Event.find({ hostMuseum: museum._id });
 
   console.log(events);
@@ -94,8 +95,7 @@ exports.deleteMuseum = catchAsync(async (req, res, next) => {
 
   console.log(deletedEvents);
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
-    data: null,
   });
 });

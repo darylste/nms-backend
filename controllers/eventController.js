@@ -151,8 +151,7 @@ exports.deleteEvent = catchAsync(async (req, res, next) => {
 
   await Booking.deleteMany({ event: event._id });
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
-    data: null,
   });
 });
