@@ -19,8 +19,8 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRY * 24 * 60 * 60 * 1000,
     ),
     // May need to change?
-    secure: process.env.NODE_ENV === 'production' ? true : false,
-    httpOnly: true,
+    // secure: process.env.NODE_ENV === 'production' ? true : false,
+    // httpOnly: true,
   });
 
   user.password = undefined;
