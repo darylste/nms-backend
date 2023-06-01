@@ -19,8 +19,8 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRY * 24 * 60 * 60 * 1000,
     ),
     // May need to change?
-    // secure: process.env.NODE_ENV === 'production' ? true : false,
-    // httpOnly: true,
+    secure: process.env.NODE_ENV === 'production' ? true : false,
+    httpOnly: true,
   });
 
   user.password = undefined;
@@ -35,11 +35,15 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  // if (
+  //   !req.body.firstName ||
+  //   !req.body.lastName ||
+  //   !req.body.emailAddress ||
+  //   !req.body.password
+  // ) {
+  //   return next(new AppError('Please complete all fields.', 400));
+  // }
   const user = await User.create(req.body);
-
-  if (!firstName || !lastName || !emailAddress || !password) {
-    return next(new AppError('Please complete all fields.', 400));
-  }
 
   createSendToken(user, 201, res);
 });
