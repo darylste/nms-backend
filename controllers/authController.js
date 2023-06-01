@@ -35,6 +35,7 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  console.log(req.body);
   // if (
   //   !req.body.firstName ||
   //   !req.body.lastName ||
