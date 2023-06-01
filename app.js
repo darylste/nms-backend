@@ -46,7 +46,7 @@ app.use(xss());
 app.use(hpp());
 
 // Allow front end to access CORS
-app.use(cors({ origin: 'http://localhost:3001' }));
+app.use(cors({ origin: '*' }));
 
 app.use('/api/v1/events', eventRouter);
 app.use('/api/v1/bookings', bookingRouter);
